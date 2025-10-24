@@ -1,1 +1,0 @@
-# uyutny-dom
