@@ -1,0 +1,220 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Уютный Дом — Хостел</title>
+<style>
+  :root{
+    --bg:#fff8f0;
+    --brand:#c48f4d;
+    --accent:#e6d0b4;
+    --text:#4a3c2a;
+    --card:#fff;
+    --shadow: 0 4px 14px rgba(0,0,0,0.08);
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0;
+    font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    background:var(--bg);
+    color:var(--text);
+    -webkit-font-smoothing:antialiased;
+  }
+
+  header{
+    background:var(--accent);
+    padding:18px 14px;
+    display:flex;
+    gap:12px;
+    align-items:center;
+    justify-content:space-between;
+    position:sticky;
+    top:0;
+    z-index:10;
+  }
+  .brand{
+    display:flex; gap:12px; align-items:center;
+  }
+  .logo{
+    width:44px;height:44px;border-radius:8px;background:var(--brand);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.12);
+  }
+  h1{font-size:18px;margin:0}
+  .addr{font-size:13px;opacity:0.9}
+
+  .actions{
+    display:flex;gap:8px;align-items:center;
+  }
+  .btn{
+    background:var(--brand);
+    color:#fff;padding:10px 14px;border-radius:10px;text-decoration:none;font-weight:600;font-size:14px;border:none;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+  }
+  .lang{
+    background:transparent;border:1px solid rgba(0,0,0,0.06);padding:8px 10px;border-radius:8px;font-size:13px;
+  }
+
+  main{padding:16px;max-width:980px;margin:0 auto;}
+
+  .card{
+    background:var(--card);border-radius:12px;padding:14px;margin-bottom:16px;box-shadow:var(--shadow);
+  }
+  section h2{margin:6px 0 10px 0;font-size:18px}
+  p{margin:0 0 10px 0}
+
+  /* gallery */
+  .gallery{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:10px;
+  }
+  .gallery img{
+    width:100%;height:160px;object-fit:cover;border-radius:10px;
+  }
+
+  @media (min-width:720px){
+    .gallery img{height:220px}
+    .gallery{grid-template-columns:repeat(3,1fr)}
+  }
+
+  /* map */
+  .map-wrap{position:relative;overflow:hidden;border-radius:12px}
+  .map-wrap iframe{width:100%;height:360px;border:0;display:block}
+
+  footer{padding:18px;text-align:center;background:var(--accent);border-top-left-radius:12px;border-top-right-radius:12px;margin-top:18px;}
+  footer a{color:inherit;text-decoration:underline}
+
+  .topline{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+  .small{font-size:13px;color:rgba(0,0,0,0.6)}
+</style>
+</head>
+<body>
+<header>
+  <div class="brand">
+    <div class="logo">УД</div>
+    <div>
+      <h1 data-i18n="title">🏠 Уютный Дом</h1>
+      <div class="addr small" data-i18n="address">12-я Парковая ул., 4</div>
+    </div>
+  </div>
+
+  <div class="actions">
+    <select id="lang" class="lang" aria-label="Выбор языка">
+      <option value="ru">Русский</option>
+      <option value="uz">Oʻzbekcha</option>
+      <option value="ky">Кыргызча</option>
+      <option value="tg">Тоҷикӣ</option>
+    </select>
+    <a class="btn" id="bookBtn" href="https://wa.me/79911365154" target="_blank" data-i18n="book">Забронировать</a>
+  </div>
+</header>
+
+<main>
+  <section class="card">
+    <div class="topline">
+      <h2 data-i18n="about_title">О нашем хостеле</h2>
+    </div>
+    <p data-i18n="about_text">В хостеле есть Wi-Fi, парковка, горячая вода, чистое бельё, регулярная уборка, вежливый и заботливый персонал.</p>
+  </section>
+
+  <section class="card">
+    <h2 data-i18n="gallery_title">Фотогалерея</h2>
+    <div class="gallery" id="gallery">
+      <!-- фотографии без подписей -->
+      <img src="images/IMG_0012.jpeg" alt="photo">
+      <img src="images/IMG_0019.jpeg" alt="photo">
+      <img src="images/IMG_0014.jpeg" alt="photo">
+      <img src="images/IMG_0016.jpeg" alt="photo">
+      <img src="images/IMG_0015.jpeg" alt="photo">
+    </div>
+  </section>
+
+  <section class="card">
+    <h2 data-i18n="map_title">📍 Мы на карте</h2>
+    <div class="map-wrap">
+      <!-- Сохранённый iframe (тот же, что ты присылал) -->
+      <iframe src="https://yandex.ru/map-widget/v1/org/uyutny_dom/159299101382/?ll=37.811115%2C55.789679&z=16" allowfullscreen></iframe>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="small" data-i18n="copyright">© Уютный Дом, Москва</div>
+  <div style="margin-top:8px"><a href="https://yandex.ru/maps/org/uyutny_dom/159299101382" target="_blank" data-i18n="yandex">Открыть в Яндекс.Картах</a></div>
+</footer>
+
+<script>
+  // Переводы: ru / uz / ky / tg
+  const L = {
+    ru: {
+      title: "🏠 Уютный Дом",
+      address: "12-я Парковая ул., 4",
+      book: "Забронировать",
+      about_title: "О нашем хостеле",
+      about_text: "В хостеле есть Wi-Fi, парковка, горячая вода, чистое бельё, регулярная уборка, вежливый и заботливый персонал.",
+      gallery_title: "Фотогалерея",
+      map_title: "📍 Мы на карте",
+      copyright: "© Уютный Дом, Москва",
+      yandex: "Открыть в Яндекс.Картах"
+    },
+    uz: {
+      title: "🏠 Qulay Uy",
+      address: "12-Parkovaya ko'chasi, 4",
+      book: "Band qilmoq",
+      about_title: "Mehmonxonamiz haqida",
+      about_text: "Mehmonxonada Wi-Fi, avtoturargoh, issiq suv, toza choyshablar, muntazam tozalash va mehribon xodimlar mavjud.",
+      gallery_title: "Foto galereya",
+      map_title: "📍 Xaritada",
+      copyright: "© Qulay Uy, Moskva",
+      yandex: "Yandex.Kartada ochish"
+    },
+    ky: {
+      title: "🏠 Ыңгайлуу Үй",
+      address: "12-Парковая көч., 4",
+      book: "Брондоо",
+      about_title: "Хостел жөнүндө",
+      about_text: "Хостелде Wi-Fi, парк жайы, ысык суу, таза постелдик бешиктер, регулярдуу тазалоо жана камкор кызматкерлер бар.",
+      gallery_title: "Фотогалерея",
+      map_title: "📍 Картта",
+      copyright: "© Ыңгайлуу Үй, Москва",
+      yandex: "Яндекс.Карталарда ачыңыз"
+    },
+    tg: {
+      title: "🏠 Хонаи Мақбул",
+      address: "12-ум Парковая, 4",
+      book: "Захира кардан",
+      about_title: "Дар бораи хостел",
+      about_text: "Дар хостел Wi-Fi, ҷойи таваққуф, оби гарм, кату матраcҳои тоза, тозакории мунтазам ва кормандони ғамхор дастрас аст.",
+      gallery_title: "Галереяи суратҳо",
+      map_title: "📍 Мо дар харита",
+      copyright: "© Хонаи Мақбул, Маскав",
+      yandex: "Кушодан дар Yandex.Kart"
+    }
+  };
+
+  function applyLang(code){
+    const dict = L[code] || L.ru;
+    document.querySelectorAll('[data-i18n]').forEach(el=>{
+      const key = el.getAttribute('data-i18n');
+      if(dict[key]) el.innerText = dict[key];
+    });
+    // direction for Tajik/Uzbek/Kyrgyz usually LTR, do nothing special
+    document.documentElement.lang = (code==='ru'?'ru':'en');
+  }
+
+  const sel = document.getElementById('lang');
+  sel.addEventListener('change', e=> applyLang(e.target.value));
+  // initial
+  applyLang('ru');
+
+  // optional: make images open in full-screen on tap (mobile)
+  document.getElementById('gallery').addEventListener('click', e=>{
+    if(e.target.tagName !== 'IMG') return;
+    const src = e.target.src;
+    const w = window.open('');
+    w.document.write(`<style>body{margin:0;background:#000;display:flex;align-items:center;justify-content:center;height:100vh}img{max-width:100%;max-height:100%}</style><img src="${src}">`);
+  });
+</script>
+</body>
+</html>
